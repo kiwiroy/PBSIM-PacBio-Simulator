@@ -1,7 +1,9 @@
 #!/bin/bash
 
+set -x
+
 DIR=$(mktemp -d)
-SEED=42
+SEED=1488361840
 DEPTH=20
 
 ./src/pbsim --prefix $DIR/travis \
@@ -14,8 +16,8 @@ DEPTH=20
 cd $DIR
 
 cat - <<EOF > checksum.sha1
-6d0440856a2cbb6709a385b4db088a57c11a62a8  travis_0001.fastq
-e590f0655464a7790a4998c7583ee915dc7ee2e4  travis_0001.maf
+c4f63e19be859372c707d8c7acbed13dc4d1705b  travis_0001.fastq
+c56e7b5ff1019ec26efcc844fadc55f8f2a02d03  travis_0001.maf
 a53bd975f1afdfd70e14fc639e3020149ace3c8b  travis_0001.ref
 EOF
 
