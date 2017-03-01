@@ -7,3 +7,4 @@ before_script: autoreconf -i
 
 script:
   - ./configure && make
+  - ./harness.sh
