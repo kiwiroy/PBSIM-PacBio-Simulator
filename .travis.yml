@@ -1,3 +1,9 @@
 language: cpp
 
 before_script: autoreconf -i
+
+#before_install:
+#  - if [ $TRAVIS_OS_NAME == linux ]; then eval "$(curl -sL https://raw.githubusercontent.com/ryuichis/oclint-cpp-travis-ci-examples/master/oclint-ci-install.sh)"; fi
+
+script:
+  - ./configure && make
