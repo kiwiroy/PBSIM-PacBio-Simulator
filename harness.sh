@@ -3,7 +3,7 @@
 set -x
 
 DIR=$(mktemp -d)
-SEED=1488361840
+SEED=42
 DEPTH=20
 
 ./src/pbsim --prefix $DIR/travis \
@@ -14,6 +14,8 @@ DEPTH=20
   sample/sample.fasta
 
 cd $DIR
+
+shasum travis_*
 
 cat - <<EOF > checksum.sha1
 c4f63e19be859372c707d8c7acbed13dc4d1705b  travis_0001.fastq
