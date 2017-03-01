@@ -15,11 +15,11 @@ DEPTH=20
 
 cd $DIR
 
-shasum travis_*
+#shasum travis_*
 
 cat - <<EOF > checksum.sha1
-c4f63e19be859372c707d8c7acbed13dc4d1705b  travis_0001.fastq
-c56e7b5ff1019ec26efcc844fadc55f8f2a02d03  travis_0001.maf
+e09341fe1834ab6c2627c4d70dd9f717e5db0f45  travis_0001.fastq
+e1dbb88b507c3884d28c1d1efa97e3417d695bb8  travis_0001.maf
 a53bd975f1afdfd70e14fc639e3020149ace3c8b  travis_0001.ref
 EOF
 
