@@ -4,6 +4,9 @@ autom4te.cache
 compile
 config.*
 configure
+depcomp
+INSTALL
+install-sh
 Makefile.in
 missing
 stamp-h1
