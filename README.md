@@ -1,7 +1,7 @@
 This Repository
 ==================
 
-This repository was created because the [Google Code repository](https://code.google.com/archive/p/pbsim/downloads) provided by the original authors is not being maintained, and Google Code is now defunct. 
+This repository was created because the [Google Code repository](https://code.google.com/archive/p/pbsim/downloads) provided by the original authors is not being maintained, and Google Code is now defunct.
 
 
 About PBSIM
@@ -19,15 +19,31 @@ sampling-based and model-based simulations are implemented.
 Building PBSIM
 ================
 
+**from a release**
+
+1. Download and extract the [release](https://github.com/pfaucon/PBSIM-PacBio-Simulator/releases):
+
+        curl -O https://github.com/pfaucon/PBSIM-PacBio-Simulator/releases/download/v1.0.0/pbsim-1.0.0.tar.gz
+        tar -zxvf pbsim-1.0.0.tar.gz
+        cd pbsim-1.0.0
+
+2. Configure the distribution.
+
+        ./configure
+
+3. Build and install pbsim:
+
+        make
+        sudo make install
+
+**from git clone** - advanced users and developers
+
 To build PBSIM run;
 
-```bash
+        autoreconf -i
+        ./configure
+        make
 
- autoreconf -i
- ./configure
- make
- ```
- 
 A new executable pbsim will be available in the src/ directory
 
 Run PBSIM with sample data
@@ -56,7 +72,7 @@ read.
 
 To run sampling-based simulation:
 
-  pbsim --data-type CLR 
+  pbsim --data-type CLR
         --depth 20
         --sample-fastq sample/sample.fastq
         sample/sample.fasta
@@ -71,7 +87,7 @@ option as below. You can save time to parse "sample/sample.fastq".
 
   (1) storing profile
 
-    pbsim --data-type CLR 
+    pbsim --data-type CLR
           --depth 20
           --prefix depth20
           --sample-fastq sample/sample.fastq
@@ -80,13 +96,13 @@ option as below. You can save time to parse "sample/sample.fastq".
 
   (2) reusing profile
 
-    pbsim --data-type CLR 
+    pbsim --data-type CLR
           --depth 30
           --prefix depth30
           --sample-profile-id pf1
           sample/sample.fasta
 
-    pbsim --data-type CLR 
+    pbsim --data-type CLR
           --depth 40
           --prefix depth40
           --sample-profile-id pf1
@@ -111,7 +127,7 @@ from a frequency table of quality scores (named "quality profile") for each
 accuracy of a read. For accuracies of 0-59% and 86-100% of CLR readsi and
 0-84% of CCS reads, uniform distributions are used because real PacBio
 datasets are not sufficiently large.
-"data/model_qc_clr" is quality profile for CLR and 
+"data/model_qc_clr" is quality profile for CLR and
 "data/model_qc_ccs" is for CCS.
 
 Simulated read sequences are randomly sampled from a reference sequence.
@@ -128,7 +144,7 @@ are chosen to be the same as their following nucleotides, and the other
 half are randomly chosen.
 The deletion probability is uniform for all positions of all simulated
 reads, which is computed from the mean error probability of the read set
-and the ratios of differeces. 
+and the ratios of differeces.
 
 By setting minimum and maximum of the length, the range of length chosen
 from the distribution model can be restricted. Note that mean and standard
@@ -152,7 +168,7 @@ the same as model-based simulation.
 Input files
 ==============
 
-PBSIM requires reference sequences in the single- or multi-FASTA Format. 
+PBSIM requires reference sequences in the single- or multi-FASTA Format.
 
 A real PacBio read data is required for sampling-based simulation,
 specified with the --sample-fastq option.
@@ -178,8 +194,8 @@ simulated reads in the MAF format.
 Quality profile
 ==================
 
-Quality profiles are derived from frequencies of real quality scores 
-for each accuracy of a read. 
+Quality profiles are derived from frequencies of real quality scores
+for each accuracy of a read.
 "data/model_qc_clr" is quality profile for CLR, "data/model_qc_ccs" is for CCS.
 In "data/model_qc_clr", 1st column is accuracies of a read, and 2nd-23th
 columns are proportions of phred quality scores (0-21).
@@ -193,11 +209,20 @@ Runtime and memory
 When a coverage depth is 100x and a length of reference sequence is about 10M,
 PBSIM generates simulated dataset in several minutes.
 The runtime is roughly proportional to the coverage depth and the length of
-reference sequence. 
+reference sequence.
 
 PBSIM requires memory of the length of reference sequence plus several mega
-bytes. 
+bytes.
 
+Developer notes
+=====================
+
+Releases should follow this recipe:
+
+        autoreconf -i
+        ./configure
+        make
+        make dist
 
 Contributors
 =====================
