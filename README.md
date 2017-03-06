@@ -219,10 +219,19 @@ Developer notes
 
 Releases should follow this recipe:
 
+1. Update version, commit and tag
+
+        ## edit line 5 of configure.ac
+        git commit -m 'bumping version for release.' configure.ac
+        git tag -a v1.0.0
+
+2. Create the distribution using autotools toolset
+
         autoreconf -i
         ./configure
-        make
         make dist
+
+3. Upload the generated archive to GitHub.
 
 Contributors
 =====================
